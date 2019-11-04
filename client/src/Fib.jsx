@@ -1,10 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Fib = props => {
-  return <div>Fib</div>;
+  useEffect(() => {
+    getData();
+  }, []);
+  const [value, setValue] = useState('');
+  const getData = async () => {
+    const response = await axios.get('/');
+    setValue(response.data.string);
+  };
+  return <div>{value} : test 완료</div>;
 };
-
-Fib.propTypes = {};
 
 export default Fib;
