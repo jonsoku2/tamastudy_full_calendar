@@ -7,7 +7,7 @@ const Fib = props => {
   }, []);
   const [value, setValue] = useState('');
   const getData = async () => {
-    const response = await axios.get('/');
+    const response = await axios.get('/api/');
     setValue(response.data.string);
   };
   return <div>{value} : test 완료</div>;
