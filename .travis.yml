@@ -9,14 +9,14 @@ script:
   - docker run -e CI=true jonsoku2/tamastudy_full_calender-react-test npm test
 
 after_success:
-  - docker build -t jonsoku2/tamastudy_full_calender-client ./client
-  - docker build -t jonsoku2/tamastudy_full_calender-nginx ./nginx
-  - docker build -t jonsoku2/tamastudy_full_calender-server ./server
-  - docker build -t jonsoku2/tamastudy_full_calender-worker ./worker
+  - docker build -t the2792/tamastudy_full_calender-client ./client
+  - docker build -t the2792/tamastudy_full_calender-nginx ./nginx
+  - docker build -t the2792/tamastudy_full_calender-server ./server
+  - docker build -t the2792/tamastudy_full_calender-worker ./worker
   # 도커 CLI 로그인
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # 이미지를 도커허브에 PUSH
-  - docker push jonsoku2/tamastudy_full_calender-client
-  - docker push jonsoku2/tamastudy_full_calender-nginx
-  - docker push jonsoku2/tamastudy_full_calender-server
-  - docker push jonsoku2/tamastudy_full_calender-worker
+  - docker push the2792/tamastudy_full_calender-client
+  - docker push the2792/tamastudy_full_calender-nginx
+  - docker push the2792/tamastudy_full_calender-server
+  - docker push the2792/tamastudy_full_calender-worker
