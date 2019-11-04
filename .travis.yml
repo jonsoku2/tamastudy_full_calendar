@@ -1,35 +1,33 @@
-language: generic
 sudo: required
 services:
   - docker
 
 before_install:
-  - docker build -t the2792/tamastudy_full_calender-react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t the2792/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true the2792/tamastudy_full_calender-react-test npm test
+  - docker run the2792/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t the2792/tamastudy_full_calender-client ./client
-  - docker build -t the2792/tamastudy_full_calender-nginx ./nginx
-  - docker build -t the2792/tamastudy_full_calender-server ./server
-  # 도커 CLI 로그인
+  - docker build -t the2792/multi-client ./client
+  - docker build -t the2792/multi-nginx ./nginx
+  - docker build -t the2792/multi-server ./server
+  # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # 이미지를 도커허브에 PUSH~!
-  - docker push the2792/tamastudy_full_calender-client
-  - docker push the2792/tamastudy_full_calender-nginx
-  - docker push the2792/tamastudy_full_calender-server
+  # Take those images and push them to docker hub
+  - docker push the2792/multi-client
+  - docker push the2792/multi-nginx
+  - docker push the2792/multi-server
 
 deploy:
   provider: elasticbeanstalk
   region: ap-northeast-1
-  app: tamastudy
-  env: Tamastudy-env
+  app: multi-docker
+  env: MultiDocker-env
   bucket_name: elasticbeanstalk-ap-northeast-1-475625490253
-  bucket_path: tamastudy-app
+  bucket_path: docker-multi
   on:
     branch: master
-  access_key_id:
-    secure: $AWS_ACCESS_KEY
+  access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
     secure: $AWS_SECRET_KEY

@@ -3,21 +3,21 @@
   "containerDefinitions": [
     {
       "name": "client",
-      "image": "the2792/tamastudy_full_calendar-client",
+      "image": "the2792/multi-client",
       "hostname": "client",
       "essential": false,
       "memory": 128
     },
     {
       "name": "server",
-      "image": "the2792/tamastudy_full_calendar-server",
+      "image": "the2792/multi-server",
       "hostname": "api",
       "essential": false,
       "memory": 128
     },
     {
       "name": "nginx",
-      "image": "the2792/tamastudy_full_calendar-nginx",
+      "image": "the2792/multi-nginx",
       "hostname": "nginx",
       "essential": true,
       "portMappings": [
