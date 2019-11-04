@@ -24,10 +24,10 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: ap-northeast-1
-  app: tamastudy_full_calendar-env
-  env: TamastudyFullCalendarEnv-env
+  app: tamastudy_full_calendar
+  env: TamastudyFullCalendar-env
   bucket_name: elasticbeanstalk-ap-northeast-1-475625490253
-  bucket_path: tamastudy_full_calendar-env
+  bucket_path: tamastudy_full_calendar
   on:
     branch: master
   access_key_id:
