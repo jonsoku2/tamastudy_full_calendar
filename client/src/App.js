@@ -1,29 +1,21 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import OtherPage from './OtherPage';
-import Fib from './Fib';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Fib Calculator</h1>
-            <Link to="/">Home</Link>
-            <Link to="/otherpage">Other Page</Link>
-          </header>
-          <div>
-            {/* <Route exact path="/" component={Fib} /> */}
-            <Route path="/otherpage" component={OtherPage} />
-          </div>
-        </div>
-      </Router>
-    );
-  }
-}
+const App = props => {
+  useEffect(() => {
+    getValue();
+  }, []);
+  const [value, setValue] = useState('');
+  const getValue = async () => {
+    const response = await axios.get('/api/');
+    setValue(response.data.string);
+  };
+  return (
+    <div>
+      <h1>{value}</h1>
+      hey!가 나타난다면 server에서 get이 정상적으로 완료된 것 !
+    </div>
+  );
+};
 
 export default App;
