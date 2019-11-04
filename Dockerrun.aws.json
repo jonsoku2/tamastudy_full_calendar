@@ -16,13 +16,6 @@
       "memory": 128
     },
     {
-      "name": "worker",
-      "image": "the2792/tamastudy_full_calendar-worker",
-      "hostname": "worker",
-      "essential": false,
-      "memory": 128
-    },
-    {
       "name": "nginx",
       "image": "the2792/tamastudy_full_calendar-nginx",
       "hostname": "nginx",
