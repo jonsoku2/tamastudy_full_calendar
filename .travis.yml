@@ -15,7 +15,7 @@ after_success:
   - docker build -t the2792/tamastudy_full_calender-worker ./worker
   # 도커 CLI 로그인
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # 이미지를 도커허브에 PUSH~
+  # 이미지를 도커허브에 PUSH~!
   - docker push the2792/tamastudy_full_calender-client
   - docker push the2792/tamastudy_full_calender-nginx
   - docker push the2792/tamastudy_full_calender-server
